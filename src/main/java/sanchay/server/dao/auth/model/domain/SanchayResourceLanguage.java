@@ -61,12 +61,12 @@ public class SanchayResourceLanguage implements Serializable{
 //    @JsonBackReference
     private Map<String, SanchayUser> users = new LinkedHashMap<>();
 
-    @PreRemove
-    private void removeLanguageFromUsers() {
-        users.entrySet().forEach(
-                (entry) -> entry.getValue().removeLanguage(this)
-        );
-    }
+//    @PreRemove
+//    private void removeLanguageFromUsers() {
+//        users.entrySet().forEach(
+//                (entry) -> entry.getValue().removeLanguage(this)
+//        );
+//    }
 
     @Override
     public int hashCode() {

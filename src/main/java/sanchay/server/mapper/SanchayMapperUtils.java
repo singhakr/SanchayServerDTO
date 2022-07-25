@@ -33,15 +33,16 @@ public class SanchayMapperUtils {
                         (entry) -> entry.getKey(),
                         (entry) ->
                         {
-                            SanchaySlimDTO slimDTO = (SanchaySlimDTO) modelMapper.map(entry.getValue(), targetClass);
-                            SanchayDTO dto = (SanchayDTO) entry.getValue();
+//                            SanchaySlimDTO slimDTO = (SanchaySlimDTO) modelMapper.map(entry.getValue(), targetClass);
+//                            SanchayDTO dto = (SanchayDTO) entry.getValue();
 
 //                            Class slimDTOClass = slimDTO.getClass();
 
-                            dto.setSlimDTO(slimDTO);
+//                            dto.setSlimDTO(slimDTO);
 //                            dto.setSlimDTO(slimDTOClass.cast(slimDTO));
 
-                            return (T) slimDTO;
+//                            return (T) slimDTO;
+                            return modelMapper.map(entry.getValue(), targetClass);
                         }
                 ));
     }

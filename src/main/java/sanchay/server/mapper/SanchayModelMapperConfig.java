@@ -17,13 +17,13 @@ public class SanchayModelMapperConfig {
         return modelMapper;
     }
 
-//    @Bean
-//    public ObjectMapper getPlainObjectMapperInstance() {
-//        return SanchayMapperUtils.getPlainObjectMapperInstance();
-//    }
-
     @Bean
-    public ObjectMapper getPolymorphicObjectMapperInstance() {
-        return SanchayMapperUtils.getPolymorphicObjectMapperInstance();
+    public ObjectMapper getPlainObjectMapperInstance() {
+        return SanchayMapperUtils.getPlainObjectMapperInstance();
     }
+
+//    @Bean
+//    public ObjectMapper getPolymorphicObjectMapperInstance() {
+//        return SanchayMapperUtils.getPolymorphicObjectMapperInstance();
+//    }
 }

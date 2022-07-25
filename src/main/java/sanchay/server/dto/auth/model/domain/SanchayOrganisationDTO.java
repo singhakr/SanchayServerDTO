@@ -63,10 +63,14 @@ public class SanchayOrganisationDTO implements Serializable {
     private Map<String, SanchayUserSlimDTO> users = new LinkedHashMap<>();
 
     @Builder.Default
-    private Set<String> usersAdded = new LinkedHashSet<>();
+//    private Set<String> usersAdded;
+//    private Set<String> usersAdded = new LinkedHashSet<>();
+    private Map<String, SanchayUserSlimDTO> usersAdded = new LinkedHashMap<>();
 
     @Builder.Default
-    private Set<String> usersDeleted = new LinkedHashSet<>();
+//    private Set<String> usersDeleted;
+//    private Set<String> usersDeleted = new LinkedHashSet<>();
+    private Map<String, SanchayUserSlimDTO> usersDeleted = new LinkedHashMap<>();
 
     @Override
     public int hashCode() {
@@ -89,13 +93,14 @@ public class SanchayOrganisationDTO implements Serializable {
         return eb.isEquals();
     }
 
-//    @JsonIgnore
+    //    @JsonIgnore
     public void addUser(SanchayUserDTO user) {
 
         //avoid circular calls : assumes equals and hashcode implemented
         if (!users.containsKey(user.getUsername())) {
-            users.put(user.getUsername(), SanchayMapperUtils.getPlainModelMapperInstance().map(user, SanchayUserSlimDTO.class));
-            usersAdded.add(user.getUsername());
+            SanchayUserSlimDTO userSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(user, SanchayUserSlimDTO.class);
+            users.put(user.getUsername(), userSlimDTO);
+            usersAdded.put(user.getUsername(), userSlimDTO);
 
             //add method to Product : sets 'other side' of association
             user.addOrganisation(this);
@@ -104,13 +109,14 @@ public class SanchayOrganisationDTO implements Serializable {
         }
     }
 
-//    @JsonIgnore
+    //    @JsonIgnore
     public void removeUser(SanchayUserDTO user) {
 
         //avoid circular calls: assumes equals and hashcode implemented:
         if (users.containsKey(user.getUsername())) {
             users.remove(user.getUsername());
-            usersDeleted.add(user.getUsername());
+            SanchayUserSlimDTO userSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(user, SanchayUserSlimDTO.class);
+            usersDeleted.put(user.getUsername(), userSlimDTO);
 
             //add method to Product: set 'other side' of association:
             user.removeOrganisation(this);

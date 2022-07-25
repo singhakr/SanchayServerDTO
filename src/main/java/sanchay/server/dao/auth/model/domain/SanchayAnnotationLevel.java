@@ -63,12 +63,12 @@ public class SanchayAnnotationLevel implements Serializable {
 //    @JsonBackReference
     private Map<String, SanchayUser> users = new LinkedHashMap<>();
 
-    @PreRemove
-    private void removeAnnotationLevelFromUsers() {
-        users.entrySet().forEach(
-                (entry) -> entry.getValue().removeAnnotationLevel(this)
-        );
-    }
+//    @PreRemove
+//    private void removeAnnotationLevelFromUsers() {
+//        users.entrySet().forEach(
+//                (entry) -> entry.getValue().removeAnnotationLevel(this)
+//        );
+//    }
 
     @Override
     public int hashCode() {

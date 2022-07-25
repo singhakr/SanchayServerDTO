@@ -80,12 +80,12 @@ public class SanchayRole implements Serializable {
 //    @Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
 //    private Collection<SanchayPrivilege> privileges = new HashSet<>();
 
-    @PreRemove
-    private void removeRoleFromUsers() {
-        users.entrySet().forEach(
-                (entry) -> entry.getValue().removeRole(this)
-        );
-    }
+//    @PreRemove
+//    private void removeRoleFromUsers() {
+//        users.entrySet().forEach(
+//                (entry) -> entry.getValue().removeRole(this)
+//        );
+//    }
 
     @Override
     public int hashCode() {

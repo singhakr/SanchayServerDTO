@@ -84,29 +84,44 @@ public class SanchayUserDTO implements Serializable {
     private Map<String, SanchayAnnotationLevelSlimDTO> annotationLevels = new LinkedHashMap<>();
 
     @Builder.Default
-    private Set<String> rolesAdded = new LinkedHashSet<>();
+//    private Set<String> rolesAdded;
+//    private Set<String> rolesAdded = new LinkedHashSet<>();
+    private Map<String, SanchayRoleSlimDTO> rolesAdded = new LinkedHashMap<>();
 
     @Builder.Default
-    private Set<String> languagesAdded = new LinkedHashSet<>();
+//    private Set<String> languagesAdded;
+//    private Set<String> languagesAdded = new LinkedHashSet<>();
+    private Map<String, SanchayResourceLanguageSlimDTO> languagesAdded = new LinkedHashMap<>();
 
     @Builder.Default
-    private Set<String> organisationsAdded = new LinkedHashSet<>();
+//    private Set<String> organisationsAdded;
+//    private Set<String> organisationsAdded = new LinkedHashSet<>();
+    private Map<String, SanchayOrganisationSlimDTO> organisationsAdded = new LinkedHashMap<>();
 
     @Builder.Default
-    private Set<String> annotationLevelsAdded = new LinkedHashSet<>();
-
-
-    @Builder.Default
-    private Set<String> rolesDeleted = new LinkedHashSet<>();
+//    private Set<String> annotationLevelsAdded;
+//    private Set<String> annotationLevelsAdded = new LinkedHashSet<>();
+    private Map<String, SanchayAnnotationLevelSlimDTO> annotationLevelsAdded = new LinkedHashMap<>();
 
     @Builder.Default
-    private Set<String> languagesDeleted = new LinkedHashSet<>();
+//    private Set<String> rolesDeleted;
+//    private Set<String> rolesDeleted = new LinkedHashSet<>();
+    private Map<String, SanchayRoleSlimDTO> rolesDeleted = new LinkedHashMap<>();
 
     @Builder.Default
-    private Set<String> organisationsDeleted = new LinkedHashSet<>();
+//    private Set<String> languagesDeleted;
+//    private Set<String> languagesDeleted = new LinkedHashSet<>();
+    private Map<String, SanchayResourceLanguageSlimDTO> languagesDeleted = new LinkedHashMap<>();
 
     @Builder.Default
-    private Set<String> annotationLevelsDeleted = new LinkedHashSet<>();
+//    private Set<String> organisationsDeleted;
+//    private Set<String> organisationsDeleted = new LinkedHashSet<>();
+    private Map<String, SanchayOrganisationSlimDTO> organisationsDeleted = new LinkedHashMap<>();
+
+    @Builder.Default
+//    private Set<String> annotationLevelsDeleted;
+//    private Set<String> annotationLevelsDeleted = new LinkedHashSet<>();
+    private Map<String, SanchayAnnotationLevelSlimDTO> annotationLevelsDeleted = new LinkedHashMap<>();
 
     @JsonIgnore
     public SanchayRoleSlimDTO getCurrentRole()
@@ -137,10 +152,10 @@ public class SanchayUserDTO implements Serializable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof SanchayUserSlimDTO)) {
+        if (!(obj instanceof SanchayUserDTO)) {
             return false;
         }
-        SanchayUserSlimDTO that = (SanchayUserSlimDTO) obj;
+        SanchayUserDTO that = (SanchayUserDTO) obj;
         EqualsBuilder eb = new EqualsBuilder();
         eb.append(username, that.getUsername());
         return eb.isEquals();
@@ -158,8 +173,9 @@ public class SanchayUserDTO implements Serializable {
 
         //avoid circular calls : assumes equals and hashcode implemented
         if (!roles.containsKey(role.getName())) {
-            roles.put(role.getName(), SanchayMapperUtils.getPlainModelMapperInstance().map(role, SanchayRoleSlimDTO.class));
-            rolesAdded.add(role.getName());
+            SanchayRoleSlimDTO roleSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(role, SanchayRoleSlimDTO.class);
+            roles.put(role.getName(), roleSlimDTO);
+            rolesAdded.put(role.getName(), roleSlimDTO);
 
             //add method to Product: set 'other side' of association:
             role.addUser(this);
@@ -174,7 +190,8 @@ public class SanchayUserDTO implements Serializable {
         //avoid circular calls: assumes equals and hashcode implemented:
         if (roles.containsKey(role.getName())) {
             roles.remove(role.getName());
-            rolesDeleted.add(role.getName());
+            SanchayRoleSlimDTO roleSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(role, SanchayRoleSlimDTO.class);
+            rolesDeleted.put(role.getName(), roleSlimDTO);
 
             //add method to Product: set 'other side' of association:
             role.removeUser(this);
@@ -188,8 +205,9 @@ public class SanchayUserDTO implements Serializable {
 
         //avoid circular calls : assumes equals and hashcode implemented
         if (!languages.containsKey(language.getName())) {
-            languages.put(language.getName(), SanchayMapperUtils.getPlainModelMapperInstance().map(language, SanchayResourceLanguageSlimDTO.class));
-            languagesAdded.add(language.getName());
+            SanchayResourceLanguageSlimDTO languageSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(language, SanchayResourceLanguageSlimDTO.class);
+            languages.put(language.getName(), languageSlimDTO);
+            languagesAdded.put(language.getName(), languageSlimDTO);
 
             //add method to Product: set 'other side' of association:
             language.addUser(this);
@@ -204,7 +222,8 @@ public class SanchayUserDTO implements Serializable {
         //avoid circular calls: assumes equals and hashcode implemented:
         if (languages.containsKey(language.getName())) {
             languages.remove(language.getName());
-            languagesDeleted.add(language.getName());
+            SanchayResourceLanguageSlimDTO languageSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(language, SanchayResourceLanguageSlimDTO.class);
+            languagesDeleted.put(language.getName(), languageSlimDTO);
 
             //add method to Product: set 'other side' of association:
             language.removeUser(this);
@@ -218,8 +237,9 @@ public class SanchayUserDTO implements Serializable {
 
         //avoid circular calls : assumes equals and hashcode implemented
         if (!organisations.containsKey(organisation.getName())) {
-            organisations.put(organisation.getName(), SanchayMapperUtils.getPlainModelMapperInstance().map(organisation, SanchayOrganisationSlimDTO.class));
-            organisationsAdded.add(organisation.getName());
+            SanchayOrganisationSlimDTO organisationSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(organisation, SanchayOrganisationSlimDTO.class);
+            organisations.put(organisation.getName(), organisationSlimDTO);
+            organisationsAdded.put(organisation.getName(), organisationSlimDTO);
 
             //add method to Product: set 'other side' of association:
             organisation.addUser(this);
@@ -234,7 +254,8 @@ public class SanchayUserDTO implements Serializable {
         //avoid circular calls: assumes equals and hashcode implemented:
         if (organisations.containsKey(organisation.getName())) {
             organisations.remove(organisation.getName());
-            organisationsDeleted.add(organisation.getName());
+            SanchayOrganisationSlimDTO organisationSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(organisation, SanchayOrganisationSlimDTO.class);
+            organisationsDeleted.put(organisation.getName(), organisationSlimDTO);
 
             //add method to Product: set 'other side' of association:
             organisation.removeUser(this);
@@ -248,8 +269,9 @@ public class SanchayUserDTO implements Serializable {
 
         //avoid circular calls : assumes equals and hashcode implemented
         if (!annotationLevels.containsKey(level.getName())) {
-            annotationLevels.put(level.getName(), SanchayMapperUtils.getPlainModelMapperInstance().map(level, SanchayAnnotationLevelSlimDTO.class));
-            annotationLevelsAdded.add(level.getName());
+            SanchayAnnotationLevelSlimDTO levelSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(level, SanchayAnnotationLevelSlimDTO.class);
+            annotationLevels.put(level.getName(), levelSlimDTO);
+            annotationLevelsAdded.put(level.getName(), levelSlimDTO);
 
             //add method to Product: set 'other side' of association:
             level.addUser(this);
@@ -264,7 +286,8 @@ public class SanchayUserDTO implements Serializable {
         //avoid circular calls: assumes equals and hashcode implemented:
         if (annotationLevels.containsKey(level.getName())) {
             annotationLevels.remove(level.getName());
-            annotationLevelsDeleted.add(level.getName());
+            SanchayAnnotationLevelSlimDTO levelSlimDTO = SanchayMapperUtils.getPlainModelMapperInstance().map(level, SanchayAnnotationLevelSlimDTO.class);
+            annotationLevelsDeleted.put(level.getName(), levelSlimDTO);
 
             //add method to Product: set 'other side' of association:
             level.removeUser(this);

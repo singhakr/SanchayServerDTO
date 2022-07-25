@@ -66,12 +66,12 @@ public class SanchayOrganisation implements Serializable {
 //    @JsonBackReference
     private Map<String, SanchayUser> users = new LinkedHashMap<>();
 
-    @PreRemove
-    private void removeOrganisationFromUsers() {
-        users.entrySet().forEach(
-                (entry) -> entry.getValue().removeOrganisation(this)
-        );
-    }
+//    @PreRemove
+//    private void removeOrganisationFromUsers() {
+//        users.entrySet().forEach(
+//                (entry) -> entry.getValue().removeOrganisation(this)
+//        );
+//    }
 
     @Override
     public int hashCode() {
