@@ -20,6 +20,7 @@ import javax.persistence.*;
 import lombok.ToString;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Data
@@ -55,10 +56,10 @@ public class SanchayUser implements Serializable {
 
 //    @ManyToMany(fetch = FetchType.EAGER,
     @ManyToMany(
-//    cascade = {
-////        CascadeType.PERSIST, 
-//        CascadeType.ALL
-//    }
+//            cascade = {
+//                    CascadeType.MERGE,
+//                    CascadeType.PERSIST
+//            }
     )
 //    @Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
 //    @LazyCollection(LazyCollectionOption.FALSE)
@@ -79,10 +80,10 @@ public class SanchayUser implements Serializable {
 
 //    @ManyToMany(fetch = FetchType.EAGER,
     @ManyToMany(
-//    cascade = {
-////        CascadeType.PERSIST, 
-//        CascadeType.ALL
-//    }
+            cascade = {
+                    CascadeType.MERGE,
+                    CascadeType.PERSIST
+            }
     )
 //    @Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
 //    @LazyCollection(LazyCollectionOption.FALSE)
@@ -100,10 +101,10 @@ public class SanchayUser implements Serializable {
 
 //    @ManyToMany(fetch = FetchType.EAGER,
     @ManyToMany(
-//    cascade = {
-////        CascadeType.PERSIST, 
-//        CascadeType.ALL
-//    }
+            cascade = {
+                    CascadeType.MERGE,
+                    CascadeType.PERSIST
+            }
     )
 //    @Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
 //    @LazyCollection(LazyCollectionOption.FALSE)
@@ -122,8 +123,8 @@ public class SanchayUser implements Serializable {
     //    @ManyToMany(fetch = FetchType.EAGER,
     @ManyToMany(
 //    cascade = {
-////        CascadeType.PERSIST,
-//        CascadeType.ALL
+//            CascadeType.PERSIST
+////            CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH
 //    }
     )
 //    @Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})

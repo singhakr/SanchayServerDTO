@@ -55,10 +55,10 @@ public class SanchayOrganisation implements Serializable {
 
 //    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "languages", cascade = {
     @ManyToMany(mappedBy = "organisations"
-//            , cascade = {
-//        CascadeType.PERSIST, 
-//        CascadeType.MERGE
-//    }
+//            cascade = {
+//                    CascadeType.PERSIST
+////                    CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH
+//            }
     )
 //    @Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
     @JsonIgnoreProperties("organisations")
