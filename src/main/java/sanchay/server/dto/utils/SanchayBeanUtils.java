@@ -44,7 +44,8 @@ public class SanchayBeanUtils {
         @Override
         public void copyProperty(Object bean, String name, Object value) throws IllegalAccessException, InvocationTargetException {
             if (value == null || (value instanceof String && ((String) value).equals(""))
-                || value instanceof Collection<?> || value instanceof Map<?,?>) {
+                || value instanceof Collection<?> || value instanceof Map<?,?>
+                || name.equals("id")) {
                 return;
             }
             super.copyProperty(bean, name, value);
