@@ -60,6 +60,8 @@ public class SanchayUserDTO implements Serializable {
 
     private boolean tokenExpired;
 
+    private boolean changePassword;
+
     private String currentRoleName;
     private String currentOrganisationName;
     private String currentLanguageName;
@@ -294,5 +296,10 @@ public class SanchayUserDTO implements Serializable {
 
             setDirty(true);
         }
+    }
+    
+    public boolean hasRole(String roleName)
+    {
+        return roles.keySet().contains(roleName);
     }
 }

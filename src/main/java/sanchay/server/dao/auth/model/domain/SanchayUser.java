@@ -80,10 +80,10 @@ public class SanchayUser implements Serializable {
 
 //    @ManyToMany(fetch = FetchType.EAGER,
     @ManyToMany(
-            cascade = {
-                    CascadeType.MERGE,
-                    CascadeType.PERSIST
-            }
+//            cascade = {
+//                    CascadeType.MERGE,
+//                    CascadeType.PERSIST
+//            }
     )
 //    @Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
 //    @LazyCollection(LazyCollectionOption.FALSE)
@@ -101,10 +101,10 @@ public class SanchayUser implements Serializable {
 
 //    @ManyToMany(fetch = FetchType.EAGER,
     @ManyToMany(
-            cascade = {
-                    CascadeType.MERGE,
-                    CascadeType.PERSIST
-            }
+//            cascade = {
+//                    CascadeType.MERGE,
+//                    CascadeType.PERSIST
+//            }
     )
 //    @Cascade({ CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
 //    @LazyCollection(LazyCollectionOption.FALSE)
@@ -272,5 +272,10 @@ public class SanchayUser implements Serializable {
             //add method to Product: set 'other side' of association:
             level.removeUser(this);
         }
+    }
+    
+    public boolean hasRole(String roleName)
+    {
+        return roles.keySet().contains(roleName);
     }
 }

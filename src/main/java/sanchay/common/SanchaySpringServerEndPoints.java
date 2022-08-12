@@ -4,11 +4,14 @@ public class SanchaySpringServerEndPoints {
 
     public static String SANCHAY_CONFIG_FILENAME = "sanchay-client-config.txt";
 
+    public static String HOME = "/home";
     public static String AUTH_BASE = "/auth";
     public static String LOGIN = "/login";
     public static String TOKEN_REFRESH = "/token/refresh";
     public static String GET_CURRENT_USER = "/current-user";
     public static String GET_USER = "/user"; // From username
+    public static String DOES_USER_EXIST = "/doesUserExist"; // From username
+    public static String DOES_EMAIL_EXIST = "/doesEmailExist"; // From username
     public static String GET_USERS = "/users";
     public static String GET_ROLES = "/roles";
     public static String GET_LANGUAGES = "/languages";
