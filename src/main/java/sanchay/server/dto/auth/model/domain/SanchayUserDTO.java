@@ -71,8 +71,6 @@ public class SanchayUserDTO implements Serializable {
 
     private boolean toBeDeleted;
 
-    private boolean changePassword;
-
     @Builder.Default
     private Map<String, SanchayRoleSlimDTO> roles = new LinkedHashMap<>();
 

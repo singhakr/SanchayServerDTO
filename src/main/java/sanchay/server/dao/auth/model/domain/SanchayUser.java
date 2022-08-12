@@ -186,15 +186,6 @@ public class SanchayUser implements Serializable {
         return eb.isEquals();
     }
 
-    public boolean hasRole(String roleName)
-    {
-        Map<String, SanchayRole> roleMap = getRoles();
-
-        boolean result = roleMap.entrySet().stream().anyMatch( (key) -> key.equals(roleMap));
-
-        return result;
-    }
-
     public void addRole(SanchayRole role) {
 
         //avoid circular calls : assumes equals and hashcode implemented
