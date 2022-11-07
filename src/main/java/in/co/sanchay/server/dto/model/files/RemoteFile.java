@@ -15,6 +15,16 @@ public class RemoteFile implements Serializable {
     protected String relativePath;
     protected String absolutePathOnServer;
     protected String absolutePathOnClient;
+    protected String charset;
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
+    }
+
     protected boolean directory;
     
     public RemoteFile()
@@ -22,12 +32,13 @@ public class RemoteFile implements Serializable {
         
     }
     
-    public RemoteFile(String name, String relPath, String absPathServer, String absPathClient, boolean isDir)
+    public RemoteFile(String name, String relPath, String absPathServer, String absPathClient, String cs, boolean isDir)
     {
         fileName = name;
         relativePath = relPath;
         absolutePathOnServer = absPathServer;
         absolutePathOnClient = absPathClient;
+        charset = cs;
         directory = isDir;
     }
     

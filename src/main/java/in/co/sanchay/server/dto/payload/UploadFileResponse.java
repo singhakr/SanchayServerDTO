@@ -7,9 +7,18 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 public class UploadFileResponse {
     private String fileName;
+    private String charset;
 
     public String getFileName() {
         return fileName;
+    }
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
     }
 
     public void setFileName(String fileName) {
@@ -44,8 +53,9 @@ public class UploadFileResponse {
     private String fileType;
     private long size;
 
-    public UploadFileResponse(String fileName, String filePath, String fileType, long size) {
+    public UploadFileResponse(String fileName, String charset, String filePath, String fileType, long size) {
         this.fileName = fileName;
+        this.charset = charset;
         this.filePath = filePath;
         this.fileType = fileType;
         this.size = size;
